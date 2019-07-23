@@ -1,0 +1,6 @@
+export PATH="$PATH"
+
+# conv cd
+if [ -f ~/enhancd/init.sh ]; then
+    source ~/enhancd/init.sh
+fi

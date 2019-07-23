@@ -1,0 +1,30 @@
+# ls coloring
+export LSCOLORS=gxfxcxdxbxegedabagacad
+# base path
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+# can use symlink in git bash
+export MSYS=winsymlinks:nativestrict
+
+# -------------------------------------
+# alias
+# -------------------------------------
+
+# -n display line num, -I ignore binary file, svn related files
+alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
+
+# base alias
+alias ls='ls -G'
+alias ll='ls -l'
+alias la='ls -a'
+alias up='cd ..; ls -l'
+alias vrc='vim ~/.vimrc'
+alias brc='vim ~/.bashrc'
+
+[ -r $HOME/.bashrc ] && source $HOME/.bashrc
+
+# git alias
+if [ -f ~/dotfiles/git-setup.sh ] ; then
+  . ~/dotfiles/git-setup.sh
+fi
+
