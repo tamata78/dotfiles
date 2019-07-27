@@ -2,6 +2,7 @@
 export LSCOLORS=gxfxcxdxbxegedabagacad
 # base path
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=C:\ProgramData\chocolatey:$PATH
 
 # can use symlink in git bash
 export MSYS=winsymlinks:nativestrict
