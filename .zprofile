@@ -15,15 +15,21 @@ export LANG=ja_JP.UTF-8
 # Homebrew cask設定
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+# python
+
 # -------------------------------------
 # パス
 # -------------------------------------
 
+# function path override
+export fpath=(/usr/local/share/zsh/site-functions /usr/local/share/zsh/functions)
+
 # 重複する要素を自動的に削除
 typeset -U path cdpath fpath manpath
 
-export PATH=/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:~/bin
+export PATH=/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:~/bin
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/opt/maven2.2.1/bin:$PATH"
 
 path=(
 $HOME/bin(N-/)
@@ -42,3 +48,21 @@ if [ -f ~/.zshrc ] ; then
 fi
 
 eval "$(rbenv init -)"
+
+# pip zsh completion start タブ補完を実現
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
+
+# improve cd
+if [ -f ~/enhancd/init.sh ]; then
+    source ~/enhancd/init.sh
+fi
+

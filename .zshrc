@@ -1,11 +1,11 @@
 # -------------------------------------
-# エイリアス
+# alias
 # -------------------------------------
 
 # -n 行数表示, -I バイナリファイル無視, svn関係のファイルを無視
 alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
 
-# 基本コマンドのalias
+# base
 alias be='bundle exec'
 alias ls='ls -G'
 alias ll='ls -l'
@@ -20,36 +20,34 @@ alias "'brew update'=brew update -v"
 alias his='history -30'
 alias srd='~/dotfiles/setup_rails_dev.sh'
 alias mngd='sudo mongod --dbpath /var/lib/mongodb --logpath /var/log/mongodb.log'
-alias sch='vim /Users/tezuka/work/ruby_study/rails_projects/my_conv_app/config/schedule.rb'
-alias cronw='cd /Users/tezuka/work/ruby_study/rails_projects/my_conv_app/; bundle exec whenever -w;cd'
 
 # cron 2018/07/13 do [error:temp file must be edited in place]
 alias crontab="VIM_CRONTAB=true crontab"
 
-# 環境変数
+# env
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export PGDATA=/usr/local/var/postgres
 export EDITOR=/usr/bin/vim
 
-# 色設定
+# color setting
 export LSCOLORS=gxfxcxdxbxegedabagacad
 #export LS_COLORS='di=01;33:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 #zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
 # -------------------------------------
-# 便利ファンクション
+# function
 # -------------------------------------
 
-# cdしたあとで、自動的に ls する
+# cd+ls
 function chpwd() { ls }
 
-# 移動したディレクトリの履歴を取ってくれるzコマンド
-. /usr/local/etc/profile.d/z.sh
-function _Z_precmd {
-    z --add "$(pwd -P)" 61 }
-precmd_functions=($precmd_functions _Z_precmd)
+# z_command (regi move dir history)
+#. /usr/local/etc/profile.d/z.sh
+#function _Z_precmd {
+#    z --add "$(pwd -P)" 61 }
+#precmd_functions=($precmd_functions _Z_precmd)
 
-# finderで開いている場所をterminalで開く
+# open terminal to opening finder path
 cdf () {
   target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
     if [ "$target" != "" ]
@@ -58,11 +56,26 @@ cdf () {
         pwd
     else
       echo 'No Finder window found' >&2
-        fi
+    fi
 }
 
+dic () {
+  w3m "http://ejje.weblio.jp/content/$1" | grep "用例"
+}
+
+jj () {
+    if [ $1 ]; then
+        JUMPDIR=$(find . -type d -maxdepth 1 | grep $1 | tail -1)
+        if [[ -d $JUMPDIR && -n $JUMPDIR ]]; then
+            cd $JUMPDIR
+        else
+            echo "directory not found"
+        fi
+    fi
+  }
+
 # -------------------------------------
-# zshのオプション
+# zsh option
 # -------------------------------------
 
 # 自動補完の有効化
@@ -87,7 +100,7 @@ SAVEHIST=6000000
 setopt share_history # share command history data
 
 # -------------------------------------
-# プロンプト
+# pronpt
 # -------------------------------------
 
 autoload -U promptinit; promptinit
@@ -130,22 +143,7 @@ PROMPT+="
 RPROMPT="[%*]"
 
 # -------------------------------------
-# キーバインド
+# key bind
 # -------------------------------------
 bindkey -e
-
-# vimライクな操作を有効化
-#bindkey -v
-
-#function cdup() {
-#  echo
-#  cd ..
-#  zle reset-prompt
-#}
-#
-#zle -N cdup
-#bindkey '^K' cdup
-#
-#bindkey "^R" history-incremental-search-backward
-#
 
