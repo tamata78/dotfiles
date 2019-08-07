@@ -14,3 +14,8 @@ do
     ln -sf ~/dotfiles/$f ~/$f
 done
 
+# svn alias
+#if [ -f ~/win_env_setting/setup/setting_svn_conf.sh ] ; then
+#    . ~/win_env_setting/setup/setting_svn_conf.sh
+#fi
+
