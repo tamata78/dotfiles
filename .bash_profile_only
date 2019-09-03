@@ -35,7 +35,7 @@ if [ -f ~/dotfiles/git-setup.sh ] ; then
 fi
 
 # svn alias
-#if [ -f ~/win_env_setting/setup/setting_svn_conf.sh ] ; then
-#    . ~/win_env_setting/setup/setting_svn_conf.sh
-#fi
+if [ -f ~/win_env_setting/setup/setting_svn_conf.sh ] ; then
+    . ~/win_env_setting/setup/setting_svn_conf.sh
+fi
 
