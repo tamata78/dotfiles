@@ -6,6 +6,8 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 # can use symlink in git bash
 export MSYS=winsymlinks:nativestrict
 
+export HISTFILE=~/.bash_history
+
 # -------------------------------------
 # alias
 # -------------------------------------
@@ -21,6 +23,8 @@ alias up='cd ..; ls -l'
 alias vrc='vim ~/.vimrc'
 alias brc='vim ~/.bashrc'
 alias peco='cmd /C,peco' # exec exeCmd
+alias his='history'
+alias ex='exit'
 
 [ -r $HOME/.bashrc ] && source $HOME/.bashrc
 
