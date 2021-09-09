@@ -146,7 +146,7 @@ RPROMPT="[%*]"
 # key bind
 # -------------------------------------
 #bindkey -v # vimバインド
-bindkey -e # vimバインド
+bindkey -e # emacsバインド
 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
