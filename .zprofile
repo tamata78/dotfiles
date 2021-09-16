@@ -47,7 +47,7 @@ if [ -f ~/.zshrc ] ; then
   . ~/.zshrc
 fi
 
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 # pip zsh completion start タブ補完を実現
 function _pip_completion {
@@ -65,4 +65,3 @@ compctl -K _pip_completion pip
 if [ -f ~/enhancd/init.sh ]; then
     source ~/enhancd/init.sh
 fi
-
