@@ -25,7 +25,7 @@ alias mngd='sudo mongod --dbpath /var/lib/mongodb --logpath /var/log/mongodb.log
 alias crontab="VIM_CRONTAB=true crontab"
 
 # env
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+#export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export PGDATA=/usr/local/var/postgres
 export EDITOR=/usr/bin/vim
 
@@ -145,5 +145,8 @@ RPROMPT="[%*]"
 # -------------------------------------
 # key bind
 # -------------------------------------
-bindkey -v # vimバインド
+bindkey -e # emacsバインド
 
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+eval "$(direnv hook zsh)"
