@@ -22,7 +22,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # -------------------------------------
 
 # function path override
-export fpath=(/usr/local/share/zsh/site-functions /usr/local/share/zsh/functions)
+export fpath=(/usr/share/zsh/site-functions /usr/share/zsh/5.9/functions)
 
 # 重複する要素を自動的に削除
 typeset -U path cdpath fpath manpath
@@ -37,6 +37,8 @@ $HOME/bin(N-/)
 /usr/local/sbin(N-/)
 $path
 )
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # git alias設定
 if [ -f ~/dotfiles/git-setup.sh ] ; then

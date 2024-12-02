@@ -158,65 +158,65 @@ nnoremap ,,r :<C-U>Ref refe<Space>
 set nocompatible
 filetype off
 
-if has('vim_starting')
-  " bundleで管理するディレクトリを指定
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#begin(expand('~/.vim/bundle/'))
-    NeoBundleFetch 'Shougo/neobundle.vim'
-  call neobundle#end()
-endif
-
-"insert here your Neobundle plugins"
-call neobundle#begin(expand('~/.vim/bundle/'))
-  NeoBundle 'scrooloose/nerdtree'
-  " 閉じるendを自動挿入
-  NeoBundle 'tpope/vim-endwise'
-  " ファイルオープンを便利に
-  NeoBundle 'Shougo/unite.vim'
-  " Unite.vimで最近使ったファイルを表示できるようにする
-  NeoBundle 'Shougo/neomru.vim'
-  " 入力補完機能を提供する
-  NeoBundle 'Shougo/neocomplcache'
-  " rubyの静的ソース解析
-  NeoBundle 'scrooloose/syntastic'
-  " メソッド定義元へのジャンプ設定を自動更新
-  NeoBundle 'szw/vim-tags'
-  " 高速ファイル検索
-  NeoBundle 'ctrlpvim/ctrlp.vim'
-  NeoBundle 'rking/ag.vim'
-  " markdownのプレビュー表示
-  NeoBundle 'plasticboy/vim-markdown'
-  NeoBundle 'kannokanno/previm'
-  NeoBundle 'tyru/open-browser.vim'
-  " rubyリファレンスを検索する
-  NeoBundle 'thinca/vim-ref'
-  " vim上でgit操作を行う
-  NeoBundle 'jreybert/vimagit'
-  " vimペースト時にautoindentを無効にする
-  NeoBundle 'ConradIrwin/vim-bracketed-paste'
-
-  " ruby補完機能を提供する
-  NeoBundle 'Shougo/vimproc', {
-        \ 'build' : {
-        \     'mac' : 'make -f make_mac.mak',
-        \     'unix' : 'make -f make_unix.mak',
-        \    },
-        \ }
-  " ステータスラインのカスタマイズ
-  NeoBundle 'itchyny/lightline.vim'
-  " rubyリファレンスの参照
-  NeoBundle 'thinca/vim-ref'
-  " python 補完
-  NeoBundle 'davidhalter/jedi-vim'
-  " python 構文エラーの検出
-  NeoBundleLazy "nvie/vim-flake8", {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"]
-      \ }}
-  " python indent
-  NeoBundle 'nathanaelkane/vim-indent-guides'
-
-call neobundle#end()
+"if has('vim_starting')
+"  " bundleで管理するディレクトリを指定
+"  set runtimepath+=~/.vim/bundle/neobundle.vim
+"  call neobundle#begin(expand('~/.vim/bundle/'))
+"    NeoBundleFetch 'Shougo/neobundle.vim'
+"  call neobundle#end()
+"endif
+"
+""insert here your Neobundle plugins"
+"call neobundle#begin(expand('~/.vim/bundle/'))
+"  NeoBundle 'scrooloose/nerdtree'
+"  " 閉じるendを自動挿入
+"  NeoBundle 'tpope/vim-endwise'
+"  " ファイルオープンを便利に
+"  NeoBundle 'Shougo/unite.vim'
+"  " Unite.vimで最近使ったファイルを表示できるようにする
+"  NeoBundle 'Shougo/neomru.vim'
+"  " 入力補完機能を提供する
+"  NeoBundle 'Shougo/neocomplcache'
+"  " rubyの静的ソース解析
+"  NeoBundle 'scrooloose/syntastic'
+"  " メソッド定義元へのジャンプ設定を自動更新
+"  NeoBundle 'szw/vim-tags'
+"  " 高速ファイル検索
+"  NeoBundle 'ctrlpvim/ctrlp.vim'
+"  NeoBundle 'rking/ag.vim'
+"  " markdownのプレビュー表示
+"  NeoBundle 'plasticboy/vim-markdown'
+"  NeoBundle 'kannokanno/previm'
+"  NeoBundle 'tyru/open-browser.vim'
+"  " rubyリファレンスを検索する
+"  NeoBundle 'thinca/vim-ref'
+"  " vim上でgit操作を行う
+"  NeoBundle 'jreybert/vimagit'
+"  " vimペースト時にautoindentを無効にする
+"  NeoBundle 'ConradIrwin/vim-bracketed-paste'
+"
+"  " ruby補完機能を提供する
+"  NeoBundle 'Shougo/vimproc', {
+"        \ 'build' : {
+"        \     'mac' : 'make -f make_mac.mak',
+"        \     'unix' : 'make -f make_unix.mak',
+"        \    },
+"        \ }
+"  " ステータスラインのカスタマイズ
+"  NeoBundle 'itchyny/lightline.vim'
+"  " rubyリファレンスの参照
+"  NeoBundle 'thinca/vim-ref'
+"  " python 補完
+"  NeoBundle 'davidhalter/jedi-vim'
+"  " python 構文エラーの検出
+"  NeoBundleLazy "nvie/vim-flake8", {
+"      \ "autoload": {
+"      \   "filetypes": ["python", "python3", "djangohtml"]
+"      \ }}
+"  " python indent
+"  NeoBundle 'nathanaelkane/vim-indent-guides'
+"
+"call neobundle#end()
 
 filetype plugin indent on
 
@@ -245,7 +245,7 @@ let g:magit_default_fold_level = 2 "hunkの中身のdiffも表示
 let g:magit_default_sections = ['global_help', 'info', 'unstaged', 'staged', 'commit']
 
 " 未インストールのプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
-NeoBundleCheck
+"NeoBundleCheck
 
 "-------------------------
 " End Neobundle Settings.
