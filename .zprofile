@@ -21,15 +21,19 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # パス
 # -------------------------------------
 
-# function path override
-export fpath=(/usr/share/zsh/site-functions /usr/share/zsh/5.9/functions)
+# function path に追加（完全置き換えしない）
+fpath=(/usr/local/share/zsh/5.9/functions $fpath)
 
 # 重複する要素を自動的に削除
 typeset -U path cdpath fpath manpath
 
 export PATH=/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:~/bin
 export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="/usr/local/opt/maven2.2.1/bin:$PATH"
+export PATH="/usr/local/opt/maven@3.5/bin:$PATH"
+export PATH="/usr/local/opt/terraform/:$PATH"
+export PATH="$(brew --prefix openssl@3.5)/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix openssl)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl)/include"
 
 path=(
 $HOME/bin(N-/)
@@ -38,18 +42,10 @@ $HOME/bin(N-/)
 $path
 )
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # git alias設定
 if [ -f ~/dotfiles/git-setup.sh ] ; then
   . ~/dotfiles/git-setup.sh
 fi
-
-if [ -f ~/.zshrc ] ; then
-  . ~/.zshrc
-fi
-
-#eval "$(rbenv init -)"
 
 # pip zsh completion start タブ補完を実現
 function _pip_completion {
@@ -67,3 +63,5 @@ compctl -K _pip_completion pip
 if [ -f ~/enhancd/init.sh ]; then
     source ~/enhancd/init.sh
 fi
+
+# brew shellenv は .zshrc で管理

@@ -25,7 +25,7 @@ alias mngd='sudo mongod --dbpath /var/lib/mongodb --logpath /var/log/mongodb.log
 alias crontab="VIM_CRONTAB=true crontab"
 
 # env
-#export JAVA_HOME=`/usr/libexec/java_home -v 17`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export PGDATA=/usr/local/var/postgres
 export EDITOR=/usr/bin/vim
 
@@ -77,6 +77,9 @@ jj () {
 # -------------------------------------
 # zsh option
 # -------------------------------------
+
+# home brew（compinit より前に実行してfpathを確定させる）
+eval "$(/usr/local/bin/brew shellenv)"
 
 # 自動補完の有効化
 autoload -U compinit; compinit
@@ -145,13 +148,24 @@ RPROMPT="[%*]"
 # -------------------------------------
 # key bind
 # -------------------------------------
-#bindkey -v # vimバインド
-bindkey -e # emacsバインド
+bindkey -e
 
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-eval "$(direnv hook zsh)"
+# -------------------------------------
+# gcloud
+#
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="~/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tamata78/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tamata78/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tamata78/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tamata78/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+

@@ -158,65 +158,62 @@ nnoremap ,,r :<C-U>Ref refe<Space>
 set nocompatible
 filetype off
 
-"if has('vim_starting')
-"  " bundleで管理するディレクトリを指定
-"  set runtimepath+=~/.vim/bundle/neobundle.vim
-"  call neobundle#begin(expand('~/.vim/bundle/'))
-"    NeoBundleFetch 'Shougo/neobundle.vim'
-"  call neobundle#end()
-"endif
-"
-""insert here your Neobundle plugins"
-"call neobundle#begin(expand('~/.vim/bundle/'))
-"  NeoBundle 'scrooloose/nerdtree'
-"  " 閉じるendを自動挿入
-"  NeoBundle 'tpope/vim-endwise'
-"  " ファイルオープンを便利に
-"  NeoBundle 'Shougo/unite.vim'
-"  " Unite.vimで最近使ったファイルを表示できるようにする
-"  NeoBundle 'Shougo/neomru.vim'
-"  " 入力補完機能を提供する
-"  NeoBundle 'Shougo/neocomplcache'
-"  " rubyの静的ソース解析
-"  NeoBundle 'scrooloose/syntastic'
-"  " メソッド定義元へのジャンプ設定を自動更新
-"  NeoBundle 'szw/vim-tags'
-"  " 高速ファイル検索
-"  NeoBundle 'ctrlpvim/ctrlp.vim'
-"  NeoBundle 'rking/ag.vim'
-"  " markdownのプレビュー表示
-"  NeoBundle 'plasticboy/vim-markdown'
-"  NeoBundle 'kannokanno/previm'
-"  NeoBundle 'tyru/open-browser.vim'
-"  " rubyリファレンスを検索する
-"  NeoBundle 'thinca/vim-ref'
-"  " vim上でgit操作を行う
-"  NeoBundle 'jreybert/vimagit'
-"  " vimペースト時にautoindentを無効にする
-"  NeoBundle 'ConradIrwin/vim-bracketed-paste'
-"
-"  " ruby補完機能を提供する
-"  NeoBundle 'Shougo/vimproc', {
-"        \ 'build' : {
-"        \     'mac' : 'make -f make_mac.mak',
-"        \     'unix' : 'make -f make_unix.mak',
-"        \    },
-"        \ }
-"  " ステータスラインのカスタマイズ
-"  NeoBundle 'itchyny/lightline.vim'
-"  " rubyリファレンスの参照
-"  NeoBundle 'thinca/vim-ref'
-"  " python 補完
-"  NeoBundle 'davidhalter/jedi-vim'
-"  " python 構文エラーの検出
-"  NeoBundleLazy "nvie/vim-flake8", {
-"      \ "autoload": {
-"      \   "filetypes": ["python", "python3", "djangohtml"]
-"      \ }}
-"  " python indent
-"  NeoBundle 'nathanaelkane/vim-indent-guides'
-"
-"call neobundle#end()
+if has('vim_starting')
+  " bundleで管理するディレクトリを指定
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  NeoBundle 'scrooloose/nerdtree'
+  " 閉じるendを自動挿入
+  NeoBundle 'tpope/vim-endwise'
+  " ファイルオープンを便利に
+  NeoBundle 'Shougo/unite.vim'
+  " Unite.vimで最近使ったファイルを表示できるようにする
+  NeoBundle 'Shougo/neomru.vim'
+  " 入力補完機能を提供する
+  NeoBundle 'Shougo/neocomplcache'
+  " snippet
+  NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/neosnippet-snippets'
+  " rubyの静的ソース解析
+  NeoBundle 'scrooloose/syntastic'
+  " メソッド定義元へのジャンプ設定を自動更新
+  NeoBundle 'szw/vim-tags'
+  " 高速ファイル検索
+  NeoBundle 'ctrlpvim/ctrlp.vim'
+  NeoBundle 'rking/ag.vim'
+  " markdownのプレビュー表示
+  NeoBundle 'plasticboy/vim-markdown'
+  NeoBundle 'kannokanno/previm'
+  NeoBundle 'tyru/open-browser.vim'
+  " vim上にプログラム実行結果を表示する
+  NeoBundle 'thinca/vim-quickrun'
+  " rubyリファレンスを検索する
+  NeoBundle 'thinca/vim-ref'
+  " vim上でgit操作を行う
+  NeoBundle 'jreybert/vimagit'
+  " vimペースト時にautoindentを無効にする
+  NeoBundle 'ConradIrwin/vim-bracketed-paste'
+
+  " ruby補完機能を提供する
+  NeoBundle 'Shougo/vimproc', {
+        \ 'build' : {
+        \     'mac' : 'make -f make_mac.mak',
+        \     'unix' : 'make -f make_unix.mak',
+        \    },
+        \ }
+  " ステータスラインのカスタマイズ
+  NeoBundle 'itchyny/lightline.vim'
+  " python 補完
+  NeoBundle 'davidhalter/jedi-vim'
+  " python 構文エラーの検出
+  NeoBundle 'andviro/flake8-vim'
+  " python 構文エラー自動修正
+  NeoBundle 'tell-k/vim-autopep8'
+
+call neobundle#end()
 
 filetype plugin indent on
 
@@ -245,33 +242,14 @@ let g:magit_default_fold_level = 2 "hunkの中身のdiffも表示
 let g:magit_default_sections = ['global_help', 'info', 'unstaged', 'staged', 'commit']
 
 " 未インストールのプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
-"NeoBundleCheck
+NeoBundleCheck
 
 "-------------------------
 " End Neobundle Settings.
 "-------------------------
 
 "-------------------------
-" [python] vim-flake8
-"------------------------
-"保存時に自動でチェック
-let g:PyFlakeOnWrite = 1
-"解析種別を設定
-let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
-"McCabe複雑度の最大値
-let g:PyFlakeDefaultComplexity=10
-"visualモードでQを押すと自動で修正
-let g:PyFlakeRangeCommand = 'Q'
-
-"-------------------------
-" [python] vim-indent-guides
-"------------------------
-" display indent from init
-" non clear display indent always
-"let g:indent_guides_enable_on_vim_startup = 1
-
-"-------------------------
-" Unit.vimの設定
+" Unite.vimの設定
 "-------------------------
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
@@ -335,6 +313,55 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
+"-------------------------
+" neosnippet
+"-------------------------
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+"set snippet file dir
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+
+" --------------------------------
+" quickrun.vim
+" --------------------------------
+" vimprocで非同期実行
+" 成功時にバッファ、失敗時にQuickFixで表示
+" 結果表示のサイズ調整など
+let g:quickrun_config = {
+    \ '_' : {
+        \ 'runner' : 'vimproc',
+        \ 'runner/vimproc/updatetime' : 40,
+        \ 'outputter' : 'error',
+        \ 'outputter/error/success' : 'buffer',
+        \ 'outputter/error/error'   : 'quickfix',
+        \ 'outputter/buffer/split' : ':botright 8sp',
+        \ 'python': {
+        \   'command': 'python3'
+        \ },
+        \ 'hook/time/enable': '1',
+    \ }
+\}
+
+" 実行時に前回の表示内容をクローズ&保存してから実行
+let g:quickrun_no_default_key_mappings = 1
+nmap <Leader>q :cclose<CR>:write<CR>:QuickRun -mode n<CR>
+
 " --------------------------------
 " rubocop
 " --------------------------------
@@ -346,3 +373,44 @@ let g:syntastic_mode_map = {
       \ 'passive_filetypes': ['python']
       \ }
 let g:syntastic_ruby_checkers = ['rubocop']
+
+"-------------------------
+" [python] vim-flake8
+"------------------------
+"autocmd BufWritePost *.py call Flake8()
+let g:flake8_quickfix_location="topleft" " Quickfixの位置
+let g:flake8_quickfix_height=7 " Quickfixの高さ
+let g:flake8_show_in_gutter=1  " 左端にシンボルを表示
+let g:flake8_show_in_file=1  " ファイル内にマークを表示
+
+"-------------------------
+" [python] tell-k/vim-autopep8
+"------------------------
+function! Preserve(command)
+    " Save the last search.
+    let search = @/
+    " Save the current cursor position.
+    let cursor_position = getpos('.')
+    " Save the current window position.
+    normal! H
+    let window_position = getpos('.')
+    call setpos('.', cursor_position)
+    " Execute the command.
+    execute a:command
+    " Restore the last search.
+    let @/ = search
+    " Restore the previous window position.
+    call setpos('.', window_position)
+    normal! zt
+    " Restore the previous cursor position.
+    call setpos('.', cursor_position)
+endfunction
+
+function! Autopep8()
+    " hypen is recieved code standard input
+    call Preserve(':silent %!autopep8 -')
+endfunction
+
+autocmd FileType python nnoremap <S-f> :call Autopep8()<CR>
+
+
