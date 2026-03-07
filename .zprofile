@@ -21,9 +21,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # パス
 # -------------------------------------
 
-# function path に追加（完全置き換えしない）
-fpath=(/usr/local/share/zsh/5.9/functions $fpath)
-
 # 重複する要素を自動的に削除
 typeset -U path cdpath fpath manpath
 
@@ -58,10 +55,5 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 # pip zsh completion end
-
-# improve cd
-if [ -f ~/enhancd/init.sh ]; then
-    source ~/enhancd/init.sh
-fi
 
 # brew shellenv は .zshrc で管理

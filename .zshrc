@@ -84,6 +84,11 @@ eval "$(/usr/local/bin/brew shellenv)"
 # 自動補完の有効化
 autoload -U compinit; compinit
 
+# improve cd (compinit後に読み込む必要あり)
+if [ -f ~/enhancd/init.sh ]; then
+    source ~/enhancd/init.sh
+fi
+
 # 入力しているコマンド名が間違っている場合にもしかして：を出す。
 setopt correct
 
